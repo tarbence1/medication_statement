@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-button [routerLink]="['/']">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button [routerLink]="['/add']">
+      <mat-icon>add</mat-icon>
+      <span>Add New</span>
+    </button>
+    <button mat-button [routerLink]="['/list']">
+      <mat-icon>list</mat-icon>
+      <span>List</span>
+    </button>
+    <span style="flex: 1 1"></span>
+    <button mat-button [matMenuTriggerFor]="menu">
+      Profile&nbsp;
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <button *ngIf="!auth.isLoggedIn" mat-menu-item [routerLink]="['/login']">
+        <mat-icon>login</mat-icon>
+        <span>Bejelentkezés</span>
+      </button>
+      <button *ngIf="auth.isLoggedIn" mat-menu-item (click)="logout()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Kijelentkezés</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

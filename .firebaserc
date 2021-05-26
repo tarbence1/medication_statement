@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "medication-statement": {
+      "hosting": {
+        "webkert": [
+          "medication-statement"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "medication-statement"
+  }
+}

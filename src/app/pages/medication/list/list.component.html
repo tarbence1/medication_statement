@@ -1,0 +1,88 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button [routerLink]="['/']">
+      <mat-icon>arrow_back</mat-icon>
+      Back
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<app-container>
+  <div *ngIf="!list">No item found</div>
+  <mat-card class="example-card" *ngFor="let item of list | async">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{ item.status }}</mat-card-title>
+      <mat-card-subtitle>{{ item.statusReason }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="2:1">
+        <mat-grid-tile
+          ><span class="title">Medication</span>
+          {{ item.medication }}</mat-grid-tile
+        >
+        <mat-grid-tile
+          ><span class="title">Subject:</span>
+          {{ item.subject }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.category"
+          ><span class="title">Category</span>
+          {{ item.category }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.context"
+          ><span class="title">Context</span> {{ item.context }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.informationSource"
+          ><span class="title">Information Source</span>
+          {{ item.informationSource }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.derivedFrom"
+          ><span class="title">Derived From</span>
+          {{ item.derivedFrom }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.reasonCode"
+          ><span class="title">Reason Code</span>
+          {{ item.reasonCode }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.reasonReference"
+        ><span class="title">Reason Reference</span>
+        {{ item.reasonReference }}</mat-grid-tile
+      >
+        <mat-grid-tile *ngIf="item.effective.startingTime"
+          ><span class="title">Starting Time:</span>
+          {{ item.effective.startingTime.seconds * 1000 | date }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.effective.endTime"
+          ><span class="title">End Time:</span>
+          {{ item.effective.endTime.seconds * 1000 | date }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.dateAsserted"
+          ><span class="title">Date Asserted:</span>
+          {{ item.dateAsserted.seconds * 1000 | date }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.dosage"
+          ><span class="title">Dosage:</span> {{ item.dosage }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.note"
+          ><span class="title">Note:</span> {{ item.note }}</mat-grid-tile
+        >
+        <mat-grid-tile *ngIf="item.basedOn"
+        ><span class="title">Based On:</span> {{ item.basedOn }}</mat-grid-tile
+      >
+      <mat-grid-tile *ngIf="item.partOf"
+      ><span class="title">Part Of:</span> {{ item.partOf }}</mat-grid-tile
+    >
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions class="actions">
+      <button mat-button [routerLink]="['/edit', item.id]">
+        <mat-icon>edit</mat-icon>
+        <span>Edit</span>
+      </button>
+      <button mat-button (click)="deleteItem(item)">
+        <mat-icon>delete</mat-icon>
+        <span>Delete</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</app-container>

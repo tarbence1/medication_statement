@@ -1,0 +1,29 @@
+.margin-bottom {
+  margin-bottom: 16px;
+}
+
+.example-card {
+  
+  margin: auto;
+  margin-bottom: 10px;
+  }
+  mat-grid-tile {
+    background: lightblue;
+  }
+
+  mat-grid-tile:hover{
+    background: rgb(129, 192, 212);
+  }
+
+  .title{
+    font-size: 20px;
+    position: absolute;
+    top: 5px;
+    color: grey;
+  }
+
+  .actions{
+    position: absolute;
+    right: 0;
+    bottom: 10px;
+  }

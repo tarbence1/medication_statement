@@ -1,0 +1,270 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button [routerLink]="['/']">
+        <mat-icon>arrow_back</mat-icon>
+        Back
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <app-container *ngIf="form">
+    <form [formGroup]="form" (ngSubmit)="editDatabase()">
+      <mat-card class="margin-bottom">
+        <mat-card-header>
+          <mat-card-title>Medication Statement</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-list>
+            <mat-list-item>
+              <mat-icon mat-list-icon>lock</mat-icon>
+              <div mat-line>E-mail</div>
+              <div mat-line>{{ form.value.identifier[1].value }}</div>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="margin-bottom">
+        <mat-card-header>
+          <mat-card-title>Medication</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <table class="max-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-select
+                    formControlName="subject"
+                    placeholder="Subject"
+                    required
+                  >
+                    <ng-container *ngFor="let sub of subject">
+                      <mat-option value="{{ sub.value }}">{{
+                        sub.value
+                      }}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-label>Medication</mat-label>
+                  <input
+                    type="text"
+                    name="medication"
+                    matInput
+                    formControlName="medication"
+                    required
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <table class="max-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-select
+                    formControlName="status"
+                    placeholder="Status"
+                    required
+                  >
+                    <ng-container *ngFor="let stat of status">
+                      <mat-option value="{{ stat.value }}">{{
+                        stat.value
+                      }}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-label>Status reason</mat-label>
+                  <input
+                    type="text"
+                    name="statusReason"
+                    matInput
+                    formControlName="statusReason"
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <table class="max-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-select formControlName="category" placeholder="Category">
+                    <ng-container *ngFor="let cat of category">
+                      <mat-option value="{{ cat.value }}">{{
+                        cat.value
+                      }}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-label>Dosage</mat-label>
+                  <input
+                    type="text"
+                    name="dosage"
+                    matInput
+                    formControlName="dosage"
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <table class="max-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-label>Context</mat-label>
+                  <input
+                    type="text"
+                    name="context"
+                    matInput
+                    formControlName="context"
+                  />
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-label>Information Source</mat-label>
+                  <input
+                    type="text"
+                    name="informationSource"
+                    matInput
+                    formControlName="informationSource"
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <table class="max-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-label>Derived From</mat-label>
+                  <input
+                    type="text"
+                    name="derivedFrom"
+                    matInput
+                    formControlName="derivedFrom"
+                  />
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-label>Reason Code</mat-label>
+                  <input
+                    type="text"
+                    name="reasonCode"
+                    matInput
+                    formControlName="reasonCode"
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <table class="max-width" cellspacing="0">
+            <tr>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-label>Note</mat-label>
+                  <input
+                    type="text"
+                    name="note"
+                    matInput
+                    formControlName="note"
+                  />
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="max-width">
+                  <mat-label>Reason Reference</mat-label>
+                  <input
+                    type="text"
+                    name="reasonReference"
+                    matInput
+                    formControlName="reasonReference"
+                  />
+                </mat-form-field>
+              </td>
+            </tr>
+          </table>
+          <mat-form-field appearance="fill" class="max-width">
+            <mat-label>Date Asserted</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker2"
+              formControlName="dateAsserted"
+              
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker2"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          <div formGroupName="effective">
+            <mat-form-field appearance="fill" class="max-width">
+              <mat-label>Starting time</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker3"
+                formControlName="startingTime"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker3"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="max-width">
+              <mat-label>End time</mat-label>
+              <input
+                matInput
+                [matDatepicker]="picker4"
+                formControlName="endTime"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker4"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker4></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <mat-form-field class="max-width">
+            <mat-label>Based On</mat-label>
+            <input
+              type="text"
+              name="basedOn"
+              matInput
+              formControlName="basedOn"
+            />
+          </mat-form-field>
+          <mat-form-field class="max-width">
+            <mat-label>Part Of</mat-label>
+            <input
+              type="text"
+              name="partOf"
+              matInput
+              formControlName="partOf"
+            />
+          </mat-form-field>
+        </mat-card-content>
+      </mat-card>
+      <div id="wrapper">
+        <button
+          mat-raised-button
+          color="primary"
+          mat-button
+          type="submit"
+          id="submit-btn"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </app-container>
+  
